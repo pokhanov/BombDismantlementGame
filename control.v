@@ -1,17 +1,17 @@
-module control(clk, SW7, BTN1, repeatRst, BombSwitch, random, showing, start, startInput, fail, success);
+module control(clk, SW7, BTN1, repeatRst,infail, insuccess, BombSwitch, random, showing, start, startInput);
 
 input clk;
 input SW7;		//总开关
 input BTN1;		//游戏开始开关
 input repeatRst;	//游戏结束后自动再次开始
+input infail;		//在fail为1时关闭BombSwitch模块和20秒倒计时模块
+input insuccess;	//在success为1时关闭BombSwitch模块和20秒倒计时模块
 
 output reg BombSwitch;		//炸弹点阵模块的显示控制
 output reg[4:0] random;		//产生随机数
 output reg showing;			//密码显示模块的显示控制
 output reg start;				//20s倒计时模块的显示控制
 output reg startInput;		//密码输入验证模块的显示控制
-output reg fail;				//哭脸模块的显示控制
-output reg success;			//笑脸模块的显示控制
 
 reg[4:0] tt;
 reg rst_p;
@@ -25,6 +25,7 @@ begin
 
 	if(SW7==1) begin
 	
+			//重启重置模块
 			if(repeatRst==1) begin
 				Rst=0;
 				endRst=0;
@@ -42,7 +43,17 @@ begin
 			end
 			
 			
-			BombSwitch=1;		//总开关打开，显示炸弹示意图
+			if(infail==0)BombSwitch=1;		//总开关打开，显示炸弹示意图
+			else begin 						   //拆弹失败时关闭炸弹示意图和20s倒计时
+				BombSwitch=0;
+				start=0;
+			end
+			
+			if(insuccess==1) begin			//拆弹成功时关闭炸弹示意图和20s倒计时
+				BombSwitch=0;
+				start=0;
+			end
+			
 			if(BTN1==1) begin
 				if(tt==5'b11111)tt=0;
 				else begin
@@ -53,7 +64,7 @@ begin
 			end
 	end
 	else begin		//总开关关闭，关掉所有显示模块
-			//先重置一下！
+			//关闭前重置
 		if(endRst==0) begin 
 				rst_p=1;
 				rst_n=0;
@@ -68,8 +79,6 @@ begin
 		showing=0;
 		start=0;
 		startInput=0;
-		fail=0;
-		success=0;
 	end
 	
 	
