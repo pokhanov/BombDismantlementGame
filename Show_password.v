@@ -1,4 +1,4 @@
-module Show_password(LD, rst, showing, endOfShow, clk, psw, seg);
+module Show_password(LD, rst, showing, endOfShow, clk, psw, seg, cat);
 input [6:0] psw;
 input showing;
 input rst;
@@ -6,8 +6,7 @@ input clk;
 output reg[6:0] LD;
 output reg[7:0] seg;
 output reg endOfShow;
-
-assign cat = 8'b11111110;		//5秒倒计时，因为是个位数所以只用得到DISP0
+output reg cat = 8'b11111110;		//5秒倒计时，因为是个位数所以只用得到DISP0
 
 
 reg clk_1hz;	
