@@ -1,14 +1,29 @@
-module laughingFace(success, clk, hang, gre, beep);
+module laughingFace(rst_n, success, clk, hang, gre, beep, repeatRst);
+input rst_n;
 input success;
 input clk;
 output reg[7:0] hang, gre;
 output reg beep;
+output reg repeatRst;
 reg[2:0] s1;
 reg[15:0] tt;
+reg[15:0] endtime;
 
-always@(posedge clk)	//时钟上升沿触发
+always@(posedge clk, negedge rst_n)	//时钟上升沿触发
 begin
-	if(success==1) begin
+	if(rst_n==0) begin
+	s1=0;
+	tt=0;
+	endtime=0;
+	repeatRst=0;
+	end
+	
+	else if(success==1) begin
+	
+		if(endtime==49) begin
+			repeatRst=1;
+		end
+		else endtime=endtime+1;
 		
 		if(tt==10) begin beep=~beep;
 							  tt=0;
