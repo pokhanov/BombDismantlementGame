@@ -1,14 +1,32 @@
-module cryingFace(clk, fail, hang, red, beep);
+module cryingFace(rst_n ,clk, fail, hang, red, beep,repeatRst);
+input rst_n;
 input clk;
 input fail;		//控制该模块开始运行
 output reg[7:0] hang, red;
 output reg beep;		//输出给蜂鸣器发出较低沉声音的频率信号
+output reg repeatRst;
 reg[2:0] s1;
 reg [15:0] tt;
+reg [15:0] endtime;
 
-always@(posedge clk)	//时钟上升沿触发
+always@(posedge clk or negedge rst_n)	//时钟上升沿触发
 begin
-	if(fail==1) begin
+
+	if(rst_n==0) begin
+	endtime=0;
+	tt=0;
+	s1=0;
+	repeatRst=0;
+	end
+
+	
+	else if(fail==1) begin
+	
+	
+	if(endtime==49) begin			//记得改回2499,显示五秒
+	repeatRst=1;		//被置1后，整个游戏重置，fail会回到0，哭脸点阵自动消失
+	end
+	else endtime=endtime+1;
 	
 	if(tt==10) begin		//记得改回1000
 						beep=~beep;
