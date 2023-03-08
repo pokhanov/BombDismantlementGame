@@ -1,4 +1,4 @@
-module control(clk, SW7, BTN1, repeatRst,infail, insuccess, BombSwitch, random, showing, start, startInput);
+module control(clk, SW7, BTN1, repeatRst,infail, insuccess, BombSwitch, random, showing, start, startInput, rst_n, rst_p);
 
 input clk;
 input SW7;		//总开关
@@ -12,10 +12,10 @@ output reg[4:0] random;		//产生随机数
 output reg showing;			//密码显示模块的显示控制
 output reg start;				//20s倒计时模块的显示控制
 output reg startInput;		//密码输入验证模块的显示控制
+output reg rst_p;
+output reg rst_n;
 
 reg[4:0] tt;
-reg rst_p;
-reg rst_n;
 reg Rst;
 reg endRst; 
 
