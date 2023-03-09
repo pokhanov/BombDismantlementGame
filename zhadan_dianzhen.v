@@ -21,6 +21,9 @@ always@(posedge clk, posedge rst)			//时钟上升沿触发
 begin
 if(rst==1)
 	 begin s1=0;
+	 gre=8'b00000000;
+	 red=8'b00000000;
+	 hang=8'b11111111;
 	 tt=0;
 	 end
 else if(BombSwitch==1)				//在BombSwitch为1的情况下才显示
