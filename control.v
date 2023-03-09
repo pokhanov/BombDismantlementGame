@@ -24,13 +24,13 @@ always@(posedge clk)
 begin
 	//重置模块rst
 			if(Rst==0) begin 
-				rst_p=1;
-				rst_n=0;
-				Rst=1;
+				rst_p<=1;
+				rst_n<=0;
+				Rst<=1;
 			end
 			else begin
-				rst_p=0;
-				rst_n=1;
+				rst_p<=0;
+				rst_n<=1;
 			end
 
 
@@ -38,8 +38,8 @@ begin
 	
 			//重启重置模块
 			if(repeatRst==1) begin
-				Rst=0;
-				endRst=0;
+				Rst<=0;
+				endRst<=0;
 			end
 	
 			
@@ -47,49 +47,49 @@ begin
 			
 			
 			if(infail==0) begin BombSwitch=1;		//总开关打开，显示炸弹示意图
-							  if(endOfShow==1) begin startInput=1;		//如果5s展示密码结束，开始允许密码输入验证
-							  start=1;
+							  if(endOfShow==1) begin startInput<=1;		//如果5s展示密码结束，开始允许密码输入验证
+							  start<=1;
 							  end
 							  end
 			else begin 						   //拆弹失败时关闭炸弹示意图和20s倒计时和密码输入验证
-				BombSwitch=0;
-				start=0;
-				startInput=0;
+				BombSwitch<=0;
+				start<=0;
+				startInput<=0;
 			end
 			
 			if(insuccess==1) begin			//拆弹成功时关闭炸弹示意图和20s倒计时和密码输入验证
-				BombSwitch=0;
-				start=0;
-				startInput=0;
+				BombSwitch<=0;
+				start<=0;
+				startInput<=0;
 			end
 			
 			
 			
 			if(BTN1==1) begin
-				if(tt==5'b11111)tt=0;
+				if(tt==5'b11111)tt<=0;
 				else begin
-					tt=tt+1;
-					random={random[4:0], tt[4:0]};
-					showing=1;
+					tt<=tt+1;
+					random<={random[4:0], tt[4:0]};
+					showing<=1;
 				end
 			end
 	end
 	else begin		//总开关关闭，关掉所有显示模块
 			//关闭前重置
 		if(endRst==0) begin 
-				rst_p=1;
-				rst_n=0;
-				endRst=1;
+				rst_p<=1;
+				rst_n<=0;
+				endRst<=1;
 		end
 		else begin
-				rst_p=0;
-				rst_n=1;
+				rst_p<=0;
+				rst_n<=1;
 		end
 			
-		BombSwitch=0;
-		showing=0;
-		start=0;
-		startInput=0;
+		BombSwitch<=0;
+		showing<=0;
+		start<=0;
+		startInput<=0;
 	end
 	
 	

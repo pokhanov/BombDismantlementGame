@@ -13,10 +13,10 @@ always@(posedge clk or negedge rst_n)	//时钟上升沿触发
 begin
 
 	if(rst_n==0) begin
-	endtime=0;
-	tt=0;
-	s1=0;
-	repeatRst=0;
+	endtime<=0;
+	tt<=0;
+	s1<=0;
+	repeatRst<=0;
 	end
 
 	

@@ -17,7 +17,8 @@ begin
 
 
 	if(rst==0) begin
-						tt=0;
+						tt<=0;
+						
 				  end
 				  
 				  
@@ -74,8 +75,8 @@ end
 always@(posedge clk_1hz, negedge rst)
 begin
 	if(rst==0) begin
-				  s2=2;
-				  s1=0;
+				  s2<=2;
+				  s1<=0;
 				  end
 				  
 	else if(start==1) begin

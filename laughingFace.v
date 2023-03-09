@@ -12,10 +12,12 @@ reg[15:0] endtime;
 always@(posedge clk, negedge rst_n)	//时钟上升沿触发
 begin
 	if(rst_n==0) begin
-	s1=0;
-	tt=0;
-	endtime=0;
-	repeatRst=0;
+	s1<=0;
+	tt<=0;
+	endtime<=0;
+	hang<=8'b01111111;
+	gre<=8'b00000000;
+	repeatRst<=0;
 	end
 	
 	else if(success==1) begin
