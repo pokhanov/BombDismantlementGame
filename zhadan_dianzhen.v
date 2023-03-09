@@ -32,77 +32,77 @@ begin
 	 
 	
 	 
-    if(tt==1000) begin tt=0;
-							  if(start==1)clk_1hz=~clk_1hz;		//在start==1的情况下才改变s2开始熄灭引信
+    if(tt==2800) begin tt<=0;
+							  if(start==1)clk_1hz<=~clk_1hz;		//在start==1的情况下才改变s2开始熄灭引信
 					  end 												//定义clk_1hz，clk2500次上升沿信号后引信熄灭一格
-	 else tt=tt+1;
+	 else tt<=tt+1;
 	 
-    if(s1==7) s1=0;else s1=s1+1;
+    if(s1==7) s1<=0;else s1<=s1+1;
     
         case(s2)
         0:begin
 			case(s1)
-			0:begin hang=8'b01111111;red=8'b00011000;gre=8'b00011000;end	//0~3行引信部分，绿色和红色同时亮，显示为黄
-			1:begin hang=8'b10111111;red=8'b00011000;gre=8'b00011000;end
-			2:begin hang=8'b11011111;red=8'b00011000;gre=8'b00011000;end
-			3:begin hang=8'b11101111;red=8'b00011000;gre=8'b00011000;end
-			4:begin hang=8'b11110111;red=8'b00011000;gre=8'b00000000;end	//4~7行炸弹部分，显示为红
-			5:begin hang=8'b11111011;red=8'b00100100;gre=8'b00000000;end
-			6:begin hang=8'b11111101;red=8'b00100100;gre=8'b00000000;end
-			7:begin hang=8'b11111110;red=8'b00011000;gre=8'b00000000;end
-			default:hang=8'b11111111;
+			0:begin hang<=8'b01111111;red<=8'b00011000;gre<=8'b00011000;end	//0~3行引信部分，绿色和红色同时亮，显示为黄
+			1:begin hang<=8'b10111111;red<=8'b00011000;gre<=8'b00011000;end
+			2:begin hang<=8'b11011111;red<=8'b00011000;gre<=8'b00011000;end
+			3:begin hang<=8'b11101111;red<=8'b00011000;gre<=8'b00011000;end
+			4:begin hang<=8'b11110111;red<=8'b00011000;gre<=8'b00000000;end	//4~7行炸弹部分，显示为红
+			5:begin hang<=8'b11111011;red<=8'b00100100;gre<=8'b00000000;end
+			6:begin hang<=8'b11111101;red<=8'b00100100;gre<=8'b00000000;end
+			7:begin hang<=8'b11111110;red<=8'b00011000;gre<=8'b00000000;end
+			default:hang<=8'b11111111;
 			endcase;
         end
         1:begin
         case(s1)
-        0:begin hang=8'b01111111;red=8'b00000000;gre=8'b00000000;end		//引信熄灭一行
-        1:begin hang=8'b10111111;red=8'b00011000;gre=8'b00011000;end
-        2:begin hang=8'b11011111;red=8'b00011000;gre=8'b00011000;end
-        3:begin hang=8'b11101111;red=8'b00011000;gre=8'b00011000;end
-        4:begin hang=8'b11110111;red=8'b00011000;gre=8'b00000000;end
-        5:begin hang=8'b11111011;red=8'b00100100;gre=8'b00000000;end
-        6:begin hang=8'b11111101;red=8'b00100100;gre=8'b00000000;end
-        7:begin hang=8'b11111110;red=8'b00011000;gre=8'b00000000;end
-        default:hang=8'b11111111;
+        0:begin hang<=8'b01111111;red<=8'b00000000;gre<=8'b00000000;end		//引信熄灭一行
+        1:begin hang<=8'b10111111;red<=8'b00011000;gre<=8'b00011000;end
+        2:begin hang<=8'b11011111;red<=8'b00011000;gre<=8'b00011000;end
+        3:begin hang<=8'b11101111;red<=8'b00011000;gre<=8'b00011000;end
+        4:begin hang<=8'b11110111;red<=8'b00011000;gre<=8'b00000000;end
+        5:begin hang<=8'b11111011;red<=8'b00100100;gre<=8'b00000000;end
+        6:begin hang<=8'b11111101;red<=8'b00100100;gre<=8'b00000000;end
+        7:begin hang<=8'b11111110;red<=8'b00011000;gre<=8'b00000000;end
+        default:hang<=8'b11111111;
         endcase;
         end
         2:begin
         case(s1)
-        0:begin hang=8'b01111111;red=8'b00000000;gre=8'b00000000;end
-        1:begin hang=8'b10111111;red=8'b00000000;gre=8'b00000000;end
-        2:begin hang=8'b11011111;red=8'b00011000;gre=8'b00011000;end
-        3:begin hang=8'b11101111;red=8'b00011000;gre=8'b00011000;end
-        4:begin hang=8'b11110111;red=8'b00011000;gre=8'b00000000;end
-        5:begin hang=8'b11111011;red=8'b00100100;gre=8'b00000000;end
-        6:begin hang=8'b11111101;red=8'b00100100;gre=8'b00000000;end
-        7:begin hang=8'b11111110;red=8'b00011000;gre=8'b00000000;end
-        default:hang=8'b11111111;
+        0:begin hang<=8'b01111111;red<=8'b00000000;gre<=8'b00000000;end
+        1:begin hang<=8'b10111111;red<=8'b00000000;gre<=8'b00000000;end
+        2:begin hang<=8'b11011111;red<=8'b00011000;gre<=8'b00011000;end
+        3:begin hang<=8'b11101111;red<=8'b00011000;gre<=8'b00011000;end
+        4:begin hang<=8'b11110111;red<=8'b00011000;gre<=8'b00000000;end
+        5:begin hang<=8'b11111011;red<=8'b00100100;gre<=8'b00000000;end
+        6:begin hang<=8'b11111101;red<=8'b00100100;gre<=8'b00000000;end
+        7:begin hang<=8'b11111110;red<=8'b00011000;gre<=8'b00000000;end
+        default:hang<=8'b11111111;
         endcase;
         end
         3:begin
         case(s1)
-         0:begin hang=8'b01111111;red=8'b00000000;gre=8'b00000000;end
-        1:begin hang=8'b10111111;red=8'b00000000;gre=8'b00000000;end
-        2:begin hang=8'b11011111;red=8'b00000000;gre=8'b00000000;end
-        3:begin hang=8'b11101111;red=8'b00011000;gre=8'b00011000;end
-        4:begin hang=8'b11110111;red=8'b00011000;gre=8'b00000000;end
-        5:begin hang=8'b11111011;red=8'b00100100;gre=8'b00000000;end
-        6:begin hang=8'b11111101;red=8'b00100100;gre=8'b00000000;end
-        7:begin hang=8'b11111110;red=8'b00011000;gre=8'b00000000;end
-        default:hang=8'b11111111;
+        0:begin hang<=8'b01111111;red<=8'b00000000;gre<=8'b00000000;end
+        1:begin hang<=8'b10111111;red<=8'b00000000;gre<=8'b00000000;end
+        2:begin hang<=8'b11011111;red<=8'b00000000;gre<=8'b00000000;end
+        3:begin hang<=8'b11101111;red<=8'b00011000;gre<=8'b00011000;end
+        4:begin hang<=8'b11110111;red<=8'b00011000;gre<=8'b00000000;end
+        5:begin hang<=8'b11111011;red<=8'b00100100;gre<=8'b00000000;end
+        6:begin hang<=8'b11111101;red<=8'b00100100;gre<=8'b00000000;end
+        7:begin hang<=8'b11111110;red<=8'b00011000;gre<=8'b00000000;end
+        default:hang<=8'b11111111;
         endcase;
         end
         4:begin
         case(s1)
-         0:begin hang=8'b01111111;red=8'b00000000;gre=8'b00000000;end		//引信全部熄灭
-        1:begin hang=8'b10111111;red=8'b00000000;gre=8'b00000000;end
-        2:begin hang=8'b11011111;red=8'b00000000;gre=8'b00000000;end
-        3:begin hang=8'b11101111;red=8'b00000000;gre=8'b00000000;end
-        4:begin hang=8'b11110111;red=8'b00011000;gre=8'b00000000;end
-        5:begin hang=8'b11111011;red=8'b00100100;gre=8'b00000000;end
-        6:begin hang=8'b11111101;red=8'b00100100;gre=8'b00000000;end
-        7:begin hang=8'b11111110;red=8'b00011000;gre=8'b00000000;end
-        default:hang=8'b11111111;
+        0:begin hang<=8'b01111111;red<=8'b00000000;gre<=8'b00000000;end
+        1:begin hang<=8'b10111111;red<=8'b00000000;gre<=8'b00000000;end
+        2:begin hang<=8'b11011111;red<=8'b00000000;gre<=8'b00000000;end
+        3:begin hang<=8'b11101111;red<=8'b00000000;gre<=8'b00000000;end
+        4:begin hang<=8'b11110111;red<=8'b00011000;gre<=8'b00000000;end
+        5:begin hang<=8'b11111011;red<=8'b00100100;gre<=8'b00000000;end
+        6:begin hang<=8'b11111101;red<=8'b00100100;gre<=8'b00000000;end
+        7:begin hang<=8'b11111110;red<=8'b00011000;gre<=8'b00000000;end
+        default:hang<=8'b11111111;
         endcase;
         end
         

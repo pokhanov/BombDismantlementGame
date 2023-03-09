@@ -27,7 +27,7 @@ begin
 	begin
 	
 		cat = 8'b11111110;
-		if(tt==49) begin tt=0;			//记得改回499
+		if(tt==600) begin tt=0;			//记得改回499
 								clk_1hz=~clk_1hz;	
 						end 												
 		else tt=tt+1;
@@ -52,6 +52,7 @@ begin
 		end
 	else begin LD<=7'b0000000;
 				  seg <=8'b00000000;
+				  cat <= 8'b11111111;
 		  end
 	end
 	
@@ -62,7 +63,7 @@ begin
 	if(rst) begin s2=0;
 					  endOfShow=0;
 			  end
-	else if(s2==49)			//记得改回499
+	else if(s2==4)			
 		begin
 			endOfShow<=1;
 			s2<=s2+1;

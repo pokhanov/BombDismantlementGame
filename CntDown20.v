@@ -7,8 +7,9 @@ output reg[7:0] cat;	//控制选择DISP0/DISP1，低电平有效
 output reg[7:0] seg;		//控制数码管，高电平有效
 
 reg clk_1hz;		//时钟分频
-reg scan;			//扫描信号
+reg[5:0] scan;			//扫描信号
 reg[24:0] tt;
+reg[5:0]tt2;
 output reg[3:0] s2;		//记录十位数大小
 output reg[3:0] s1;		//记录个位数大小
 
@@ -18,25 +19,28 @@ begin
 
 	if(rst==0) begin
 						tt<=0;
-						
+						tt2<=0;
 				  end
 				  
 				  
 	else if(start) begin
-							if(tt==1000) begin clk_1hz=~clk_1hz;
-													tt=0;		
+							if(tt==600) begin clk_1hz<=~clk_1hz;
+													tt<=0;		
 											end
-							else tt=tt+1;
+							else tt<=tt+1;
 							
 							
 							
-							if(scan==0) scan=1;
-							else scan=0;
+							if(tt2==10) begin
+							tt2<=0;
+							scan<=~scan;
+							end
+							else tt2<=tt2+1;
 							
 							
 							
-							case(scan)
-							0:begin cat=8'b11111110;
+							if(scan==0)
+							begin cat<=8'b11111110;
 										case(s1) 
 										0: seg<=8'b00111111;
 										1: seg<=8'b00000110;
@@ -52,7 +56,8 @@ begin
 										endcase
 								end
 										
-							1:begin cat=8'b11111101;
+							else
+							begin cat<=8'b11111101;
 										case(s2) 
 										0: seg<=8'b00111111;
 										1: seg<=8'b00000110;
@@ -67,8 +72,11 @@ begin
 										default: seg<=8'b00000000;
 										endcase
 								end
-							endcase
+							
 						end
+			else begin seg<=8'b00000000;
+						   cat<=8'b11111110;
+			end
 						
 end
 
@@ -82,15 +90,15 @@ begin
 	else if(start==1) begin
 	
 								if(s1==0) begin if(s2>0) begin
-																 s2=s2-1;
-																 s1=9;
+																 s2<=s2-1;
+																 s1<=9;
 																 end
 													 else begin
-															s1=-1;
-															s2=-1;
+															s1<=-1;
+															s2<=-1;
 															end
 												end
-												else s1=s1-1;
+												else s1<=s1-1;
 							 end
 							 
 	else begin s1<=0;

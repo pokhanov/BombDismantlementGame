@@ -29,7 +29,7 @@ assign seg = seg_FROM_CntDown20 | seg_FROM_Shwo_password;
 
 wire[7:0] cat_FROM_CntDown20;
 wire[7:0] cat_FROM_Shwo_password;
-assign cat = cat_FROM_CntDown20 | cat_FROM_Shwo_password;
+assign cat = cat_FROM_CntDown20 & cat_FROM_Shwo_password;
 
 wire[7:0] hang_FROM_laughingFace;
 wire[7:0] hang_FROM_cryingFace;
