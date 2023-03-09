@@ -12,7 +12,7 @@ input rst;		//复位信号
 reg[2:0] s1;	//s1取值0~7，在一个图像中实现动态扫描
 
 reg clk_1hz;	//引信熄灭一格的时钟频率
-reg[15:0] tt;
+reg[20:0] tt;
 reg[4:0] s2;	//s2取值0~4，表示引信当前熄灭了几行
 
 
@@ -20,11 +20,11 @@ reg[4:0] s2;	//s2取值0~4，表示引信当前熄灭了几行
 always@(posedge clk, posedge rst)			//时钟上升沿触发
 begin
 if(rst==1)
-	 begin s1=0;
-	 gre=8'b00000000;
-	 red=8'b00000000;
-	 hang=8'b11111111;
-	 tt=0;
+	 begin s1<=0;
+	 gre<=8'b00000000;
+	 red<=8'b00000000;
+	 hang<=8'b11111111;
+	 tt<=0;
 	 end
 else if(BombSwitch==1)				//在BombSwitch为1的情况下才显示
 begin
@@ -32,7 +32,7 @@ begin
 	 
 	
 	 
-    if(tt==49) begin tt=0;
+    if(tt==1000) begin tt=0;
 							  if(start==1)clk_1hz=~clk_1hz;		//在start==1的情况下才改变s2开始熄灭引信
 					  end 												//定义clk_1hz，clk2500次上升沿信号后引信熄灭一格
 	 else tt=tt+1;
@@ -111,16 +111,21 @@ begin
         
 	
 	end
+	
+	else begin
+	red<=8'b00000000;
+	 hang<=8'b11111111;
+	end
 
 	end
 
 always@(posedge clk_1hz or posedge rst)
 begin
-	if(rst) begin s2=0;
-					  fail=0;
+	if(rst) begin s2<=0;
+					  fail<=0;
 			  end
-   else if(s2==4) begin	s2=0;
-								if(start==1)fail = 1;
+   else if(s2==4) begin	s2<=0;
+								if(start==1)fail <= 1;
 						end
    else s2=s2+1;
 end

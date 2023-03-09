@@ -8,7 +8,7 @@ output reg[7:0] seg;		//控制数码管，高电平有效
 
 reg clk_1hz;		//时钟分频
 reg scan;			//扫描信号
-reg[15:0] tt;
+reg[24:0] tt;
 output reg[3:0] s2;		//记录十位数大小
 output reg[3:0] s1;		//记录个位数大小
 
@@ -23,7 +23,7 @@ begin
 				  
 				  
 	else if(start) begin
-							if(tt==29) begin clk_1hz=~clk_1hz;
+							if(tt==1000) begin clk_1hz=~clk_1hz;
 													tt=0;		
 											end
 							else tt=tt+1;

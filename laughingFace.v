@@ -6,8 +6,8 @@ output reg[7:0] hang, gre;
 output reg beep;
 output reg repeatRst;
 reg[2:0] s1;
-reg[15:0] tt;
-reg[15:0] endtime;
+reg[5:0] tt;
+reg[24:0] endtime;
 
 always@(posedge clk, negedge rst_n)	//时钟上升沿触发
 begin
@@ -15,14 +15,14 @@ begin
 	s1<=0;
 	tt<=0;
 	endtime<=0;
-	hang<=8'b01111111;
+	hang<=8'b11111111;
 	gre<=8'b00000000;
 	repeatRst<=0;
 	end
 	
 	else if(success==1) begin
 	
-		if(endtime==49) begin
+		if(endtime==500) begin
 			repeatRst=1;
 		end
 		else endtime=endtime+1;

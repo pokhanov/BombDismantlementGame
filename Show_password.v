@@ -17,9 +17,9 @@ reg[4:0] s2;
 always@(posedge clk)
 begin
 	if(rst==1) begin
-					tt=0;
-					LD=7'b0000000;
-					cat = 8'b11111111;
+					tt<=0;
+					LD<=7'b0000000;
+					cat <= 8'b11111111;
 					seg <=8'b00000000;
 				  end 
 				  
@@ -27,7 +27,7 @@ begin
 	begin
 	
 		cat = 8'b11111110;
-		if(tt==109) begin tt=0;
+		if(tt==49) begin tt=0;			//记得改回499
 								clk_1hz=~clk_1hz;	
 						end 												
 		else tt=tt+1;
@@ -50,7 +50,7 @@ begin
 			
 		
 		end
-	else begin LD=7'b0000000;
+	else begin LD<=7'b0000000;
 				  seg <=8'b00000000;
 		  end
 	end
@@ -62,12 +62,12 @@ begin
 	if(rst) begin s2=0;
 					  endOfShow=0;
 			  end
-	else if(s2==4)
+	else if(s2==49)			//记得改回499
 		begin
-			endOfShow=1;
-			s2=s2+1;
+			endOfShow<=1;
+			s2<=s2+1;
 		end
-   else s2=s2+1;
+   else s2<=s2+1;
 end
 
 endmodule

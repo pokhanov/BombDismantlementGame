@@ -18,11 +18,12 @@ output reg rst_n=1;
 
 reg[4:0] tt;
 reg Rst=0;
-reg endRst; 
+reg endRst=0; 
 
 always@(posedge clk)
 begin
 	//重置模块rst
+	
 			if(Rst==0) begin 
 				rst_p<=1;
 				rst_n<=0;
@@ -35,11 +36,14 @@ begin
 
 
 	if(SW7==1) begin
-	
+			endRst<=0;
 			//重启重置模块
 			if(repeatRst==1) begin
 				Rst<=0;
 				endRst<=0;
+				startInput<=0;
+				start<=0;
+				showing<=0;
 			end
 	
 			

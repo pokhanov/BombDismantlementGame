@@ -34,7 +34,7 @@ assign cat = cat_FROM_CntDown20 | cat_FROM_Shwo_password;
 wire[7:0] hang_FROM_laughingFace;
 wire[7:0] hang_FROM_cryingFace;
 wire[7:0] hang_FROM_zhadan_dianzhen;
-assign hang = hang_FROM_laughingFace | hang_FROM_cryingFace | hang_FROM_zhadan_dianzhen;
+assign hang = hang_FROM_laughingFace & hang_FROM_cryingFace & hang_FROM_zhadan_dianzhen;
 
 wire[7:0] gre_FROM_laughingFace;
 wire[7:0] gre_FROM_zhadan_dianzhen;
