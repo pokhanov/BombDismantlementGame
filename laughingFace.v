@@ -22,7 +22,7 @@ begin
 	
 	else if(success==1) begin
 	
-		if(endtime==500) begin
+		if(endtime==2500) begin
 			repeatRst=1;
 		end
 		else endtime=endtime+1;
