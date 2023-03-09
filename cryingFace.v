@@ -48,10 +48,7 @@ begin
 			endcase; 
 			
 	end	
-	else begin
-				hang=8'b11111111;
-				red =8'b00000000;
-		  end
+
 end
 
 

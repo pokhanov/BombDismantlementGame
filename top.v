@@ -76,7 +76,8 @@ control (//输入信号
 			.start(start),
 			.startInput(startInput),
 			.rst_n(rst_n),
-			.rst_p(rst_p)
+			.rst_p(rst_p),
+			.showing(showing)
 			);
 			
 random_password(//输入信号

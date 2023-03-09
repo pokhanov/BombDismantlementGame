@@ -1,13 +1,13 @@
-module zhadan_dianzhen(start, BombSwitch, clk, hang, red, gre, fail);
+module zhadan_dianzhen(rst, start, BombSwitch, clk, hang, red, gre, fail);
 input start;	//引线开始缩短信号	
 input BombSwitch;		//总开关，为0时不显示图像，为1时显示。	
 input clk;		//时钟频率。因为电脑无法进行太长时间的仿真，所以仿真时周期调得较小
 output reg[7:0]hang,	//行扫描信号
 					red,  //控制红色发光二极管列
 					gre;  //控制绿色发光二极管列
-output reg fail;		//输出信号，表示拆弹失败
+output reg fail=0;		//输出信号，表示拆弹失败
 
-reg rst;		//复位信号
+input rst;		//复位信号
 
 reg[2:0] s1;	//s1取值0~7，在一个图像中实现动态扫描
 
@@ -17,16 +17,17 @@ reg[4:0] s2;	//s2取值0~4，表示引信当前熄灭了几行
 
 
 
-always@(posedge clk)			//时钟上升沿触发
+always@(posedge clk, posedge rst)			//时钟上升沿触发
 begin
-if(BombSwitch==1)				//在BombSwitch为1的情况下才显示
+if(rst==1)
+	 begin s1=0;
+	 tt=0;
+	 end
+else if(BombSwitch==1)				//在BombSwitch为1的情况下才显示
 begin
 	
-	 if(rst==1)
-	 begin s1=0;
-	 rst=0;
-	 end
-	 else begin
+	 
+	
 	 
     if(tt==49) begin tt=0;
 							  if(start==1)clk_1hz=~clk_1hz;		//在start==1的情况下才改变s2开始熄灭引信
@@ -105,13 +106,9 @@ begin
         default:hang=8'b11111111;
         endcase;
         
+	
 	end
-	end
-else 
-begin
-	hang=8'b11111111;
-	rst=1;
-end
+
 	end
 
 always@(posedge clk_1hz or posedge rst)
