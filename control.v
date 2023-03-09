@@ -47,7 +47,9 @@ begin
 			
 			
 			if(infail==0) begin BombSwitch=1;		//总开关打开，显示炸弹示意图
-							  if(endOfShow==1) startInput=1;		//如果5s展示密码结束，开始允许密码输入验证
+							  if(endOfShow==1) begin startInput=1;		//如果5s展示密码结束，开始允许密码输入验证
+							  start=1;
+							  end
 							  end
 			else begin 						   //拆弹失败时关闭炸弹示意图和20s倒计时和密码输入验证
 				BombSwitch=0;

@@ -23,7 +23,7 @@ begin
 			begin
 				rand_num <=seed;  
 			end
-    else if(cnt2<2499)
+    else if(cnt2<24)
         begin
             rand_num[0] <= rand_num[7];
             rand_num[1] <= rand_num[0];
