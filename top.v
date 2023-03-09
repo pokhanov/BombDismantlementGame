@@ -65,7 +65,7 @@ wire[6:0] rand_num_FROM_random_password_TO_show_password_pswInpu_check;
 control (//输入信号
 			.clk(clk), 
 			.SW7(SW7),
-			.repeatRst(repeatRst_FROM_cryingFace_laughingFace_TO_control),
+			.repeatRst(repeatRst_TO_control),
 			.infail(fail_FROM_zhadan_dianzhen_TO_control_cryingFace),
 			.BTN1(BTN1),
 			.insuccess(success_FROM_pswInput_check_TO_control_laughingFace),

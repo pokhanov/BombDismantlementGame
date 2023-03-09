@@ -13,6 +13,7 @@ always@(posedge clk, negedge rst)
 begin
 	if(rst==0) begin
 						success=0;
+						LD<=7'b0000000;
 				  end
 				  
 	else if(startInput==1) begin

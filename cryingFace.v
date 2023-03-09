@@ -18,6 +18,7 @@ begin
 	s1<=0;
 	repeatRst<=0;
 	hang=8'b11111111;
+	red=8'b00000000;
 	end
 
 	
@@ -32,6 +33,7 @@ begin
 	if(tt==10) begin		//记得改回1000
 						beep=~beep;
 						tt=0;
+						
 					 end
 	 else tt=tt+1;
 	

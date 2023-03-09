@@ -10,7 +10,7 @@ input endOfShow;	//结束5s密码显示
 
 output reg BombSwitch;		//炸弹点阵模块的显示控制
 output reg[4:0] random;		//产生随机数
-output reg showing;			//密码显示模块的显示控制
+output reg showing=0;			//密码显示模块的显示控制
 output reg start;				//20s倒计时模块的显示控制
 output reg startInput;		//密码输入验证模块的显示控制
 output reg rst_p=0;
@@ -23,6 +23,14 @@ reg endRst=0;
 always@(posedge clk)
 begin
 	//重置模块rst
+	//重启重置模块
+			if(repeatRst==1) begin
+				Rst<=0;
+				endRst<=0;
+				startInput<=0;
+				start<=0;
+				showing<=0;
+			end
 	
 			if(Rst==0) begin 
 				rst_p<=1;
@@ -37,14 +45,7 @@ begin
 
 	if(SW7==1) begin
 			endRst<=0;
-			//重启重置模块
-			if(repeatRst==1) begin
-				Rst<=0;
-				endRst<=0;
-				startInput<=0;
-				start<=0;
-				showing<=0;
-			end
+			
 	
 			
 			
@@ -58,13 +59,11 @@ begin
 			else begin 						   //拆弹失败时关闭炸弹示意图和20s倒计时和密码输入验证
 				BombSwitch<=0;
 				start<=0;
-				startInput<=0;
 			end
 			
 			if(insuccess==1) begin			//拆弹成功时关闭炸弹示意图和20s倒计时和密码输入验证
 				BombSwitch<=0;
 				start<=0;
-				startInput<=0;
 			end
 			
 			
