@@ -25,7 +25,7 @@ begin
 	else if(fail==1) begin
 	
 	
-	if(endtime==500) begin			//记得改回2499,显示五秒
+	if(endtime==2500) begin			//记得改回2499,显示五秒
 	repeatRst=1;		//被置1后，整个游戏重置，fail会回到0，哭脸点阵自动消失
 	end
 	else endtime=endtime+1;
