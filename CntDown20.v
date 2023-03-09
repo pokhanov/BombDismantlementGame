@@ -17,7 +17,7 @@ begin
 
 
 	if(rst==0) begin
-						cat=8'b11111111;
+						tt=0;
 				  end
 				  
 				  
@@ -68,9 +68,6 @@ begin
 								end
 							endcase
 						end
-		else begin cat<=8'b11111111;
-					  seg<=8'b00000000;
-			  end
 						
 end
 

@@ -45,9 +45,6 @@ begin
 			
 	end
 	
-	else begin hang=8'b11111111;
-				  gre =8'b00000000;
-		  end
 			
 end
 

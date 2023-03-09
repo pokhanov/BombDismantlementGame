@@ -1,12 +1,13 @@
 module Show_password(LD, rst, showing, endOfShow, clk, psw, seg, cat);
 input [6:0] psw;
 input showing;
-input rst;
+input rst;		//高电平有效复位信号
 input clk;
 output reg[6:0] LD;
 output reg[7:0] seg;
 output reg endOfShow;
-output reg cat = 8'b11111110;		//5秒倒计时，因为是个位数所以只用得到DISP0
+
+output reg[7:0] cat;		//5秒倒计时，因为是个位数所以只用得到DISP0
 
 
 reg clk_1hz;	
@@ -18,12 +19,14 @@ begin
 	if(rst==1) begin
 					tt=0;
 					LD=7'b0000000;
+					cat = 8'b11111111;
+					seg <=8'b00000000;
 				  end 
 				  
 	else if(showing)
 	begin
 	
-	
+		cat = 8'b11111110;
 		if(tt==109) begin tt=0;
 								clk_1hz=~clk_1hz;	
 						end 												
